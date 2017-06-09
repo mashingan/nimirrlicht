@@ -1,0 +1,15 @@
+*
+
+!*.*
+!*/*
+
+nimcache/
+
+*.swap
+*.swp
+*.un~
+
+*.exe
+*.ilk
+*.pdb
+*.dbg
