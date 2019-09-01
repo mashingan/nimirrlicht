@@ -45,7 +45,7 @@ type
   AabBox3df* {.final header: irr,
     importcpp: "irr::core::aabbox3df" .} = object
   Dimension2d* {.final header: irr,
-    importc: "irr::core::dimension2d".} = object
+    importcpp: "irr::core::dimension2d".} [T]= object
   Vector2df* {.final header: irr,
     importc: "irr::core::vector2df".} = object
   Vector3df* {.final header: irr,
@@ -233,9 +233,9 @@ proc aabbox3df*(a, b, c, x, y, z: cfloat): AabBox3df {. header: irr,
   importc: "irr::core::aabbox3d<irr::f32>" .}
 proc position2d*(x, y: cint): Position2d {. header: irr,
   importc: "irr::core::position2d<irr::s32>".}
-proc dimension2du*(x, y: cint): Dimension2d {.
+proc dimension2du*(x, y: cint): Dimension2d[cuint] {.
   header: irr, importc: "irr::core::dimension2d<irr::u32>" .}
-proc dimension2df*(x, y: cfloat): Dimension2d {.
+proc dimension2df*(x, y: cfloat): Dimension2d[cfloat] {.
   header: irr, importc: "irr::core::dimension2d<irr::f32>" .}
 proc vector2df*[T: cint or float](x, y: T): Vector2df {.
   header: irr, importc: "irr::core::vector2df" .}
@@ -414,7 +414,7 @@ proc getMeshManipulator*(mgr: PISceneManager): PIMeshManipulator {.
 
 proc addHillPlaneMesh*[S: string or cstring or
   WideCString](mgr: PISceneManager, path: S,
-  tilesz: Dimension2d, tilecnt: Dimension2d,
+  tilesz: Dimension2d[cfloat], tilecnt: Dimension2d[cuint],
   material: PSMaterial = nil, hillHeight = 0.0,
   countHills = dimension2du(0, 0),
   textureRepeatCount = dimension2du(1, 1)): PIAnimatedMesh {.
